@@ -3,9 +3,7 @@ from datetime import datetime
 import jdatetime  # اضافه کردن کتابخانه jdatetime
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, filters
-from Login import save_accounts_to_json
-
-TOKEN = '7790482812:AAG9W_kVlZ13drEf911zoHmF6EmRZ9chCsE'
+from login import save_accounts_to_json, TOKEN  # توکن از login.py وارد شده
 
 def bytes_to_human_readable(bytes_value):
     """تبدیل بایت به واحد مناسب (گیگابایت یا مگابایت)."""
@@ -88,7 +86,7 @@ async def handle_message(update: Update, context) -> None:
 # تنظیمات اصلی ربات
 def main():
     # ساخت اپلیکیشن ربات با استفاده از Application.builder()
-    application = Application.builder().token(TOKEN).build()
+    application = Application.builder().token(TOKEN).build()  # توکن از login.py گرفته شده
 
     # اضافه کردن هندلرها
     application.add_handler(CommandHandler('start', start))

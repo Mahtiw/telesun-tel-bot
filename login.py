@@ -3,11 +3,15 @@ import json
 import pickle
 import os
 import re
+
+# توکن ربات
+TOKEN = 'YOUR_BOT_TOKEN_HERE'
+
 # اطلاعات پنل‌ها
 panels = [
-    {"url": "http://s1.example.com", "username": "root", "password": "12345"},
-    {"url": "http://s2.example.com", "username": "root", "password": "12345"},
-    {"url": "http://s3.example.com", "username": "root", "password": "12345"},
+    {"url": "http://s1.example.com:1111/", "username": "user1", "password": "admin1"},
+    {"url": "http://s1.example.com:2222/", "username": "user2", "password": "admin2"},
+    {"url": "http://s1.example.com:3333/", "username": "user3", "password": "admin3"},
 ]
 
 # آدرس‌ها
@@ -110,6 +114,6 @@ def save_accounts_to_json():
 
 def StartMYFILD():
     save_accounts_to_json()
+
 if __name__ == '__main__':
     save_accounts_to_json()
-
