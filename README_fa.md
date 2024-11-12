@@ -149,4 +149,9 @@ docker-compose up -d
 docker-compose down
 docker-compose build --no-cache
 docker-compose up -d
+```
+
+### تشکر از سروش عزیز
+ [sorusham](https://github.com/sorusham)
+
 
