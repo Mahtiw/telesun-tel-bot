@@ -137,4 +137,8 @@ If you make any changes to the code, run the following commands to apply the upd
 docker-compose down
 docker-compose build --no-cache
 docker-compose up -d
+```
+
+### Special Thanks to Sorush
+[sorusham](https://github.com/sorusham)
 
