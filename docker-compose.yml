@@ -1,0 +1,6 @@
+version: '3'
+services:
+  telesun-tel-bot:
+    build: .
+    restart: always
+    container_name: telesun-tel-bot
