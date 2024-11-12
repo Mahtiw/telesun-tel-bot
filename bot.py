@@ -28,6 +28,7 @@ def get_user_info(email):
                     total_size = client['total']
                     
                     total_download_upload_size = up_size + down_size
+                    remaining_size = total_size - total_download_upload_size if total_size > total_download_upload_size else 0
 
                     expiry_time_ms = client['expiryTime']
                     if expiry_time_ms <= 0:
@@ -45,9 +46,10 @@ def get_user_info(email):
                         [InlineKeyboardButton(f"⬆️ آپلود: {bytes_to_human_readable(up_size)}", callback_data='upload')],
                         [InlineKeyboardButton(f"⬇️ دانلود: {bytes_to_human_readable(down_size)}", callback_data='download')],
                         [InlineKeyboardButton(f"📊 مجموع دانلود و آپلود: {bytes_to_human_readable(total_download_upload_size)}", callback_data='total')],
+                        [InlineKeyboardButton(f"📉 باقیمانده: {bytes_to_human_readable(remaining_size)}", callback_data='remaining')],
+                        [InlineKeyboardButton(f"💾 حجم کل: {bytes_to_human_readable(total_size)}", callback_data='total_size')],
                         [InlineKeyboardButton(f"{status_text}", callback_data='status')],
-                        [InlineKeyboardButton(f"⏳ تاریخ انقضا: {expiry_time_str}", callback_data='expiry')],
-                        [InlineKeyboardButton(f"💾 مجموع: {bytes_to_human_readable(total_size)}", callback_data='total_size')]
+                        [InlineKeyboardButton(f"⏳ تاریخ انقضا: {expiry_time_str}", callback_data='expiry')]
                     ]
 
                     reply_markup = InlineKeyboardMarkup(keyboard)
