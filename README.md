@@ -126,5 +126,15 @@ docker-compose up -d
 ```
 
 ## Additional Notes
+
 - If your server restarts, Docker Compose will automatically bring up the bot again.
 - Ensure the bot token and panel information are configured correctly for proper operation.
+
+### Applying Code Changes
+If you make any changes to the code, run the following commands to apply the updates:
+
+```bash
+docker-compose down
+docker-compose build --no-cache
+docker-compose up -d
+
