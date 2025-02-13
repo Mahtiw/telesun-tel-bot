@@ -4,8 +4,6 @@ import pickle
 import os
 import re
 
-TOKEN = 'YOUR_BOT_TOKEN_HERE'
-
 panels = [
     {"url": "http://s1.example.com:1111/", "username": "user1", "password": "admin1"},
     {"url": "http://s1.example.com:2222/", "username": "user2", "password": "admin2"},
@@ -18,6 +16,8 @@ url_sanaei = "panel/inbound/list"
 
 pickle_file = "cookies.pkl"
 json_file = "data.json"
+
+TOKEN = "YOUR_BOT_TOKEN_HERE"
 
 def write_pickle(pickle_data):
     with open(pickle_file, 'wb') as f:
@@ -40,7 +40,8 @@ def get_data_from_panels():
         try:
             with open(pickle_file, 'rb') as f:
                 cookies = pickle.load(f)
-        except:
+        except Exception as e:
+            print(f"Error loading cookies: {e}")
             open(pickle_file, 'w').close()
 
     for panel in panels:
@@ -82,8 +83,11 @@ def get_data_from_panels():
             else:
                 panels_data[panel_name] = session.post(panel['url'] + url_sanaei).json()['obj']
 
-        except (requests.exceptions.InvalidURL, requests.exceptions.InvalidSchema, requests.exceptions.ConnectionError):
-            print(f"{panel['url']} : incorrect URL or port number")
+        except (requests.exceptions.InvalidURL, requests.exceptions.InvalidSchema, requests.exceptions.ConnectionError) as e:
+            print(f"{panel['url']} : incorrect URL or port number: {e}")
+            continue
+        except Exception as e:
+            print(f"An error occurred: {e}")
             continue
 
     return panels_data
@@ -95,9 +99,3 @@ def save_accounts_to_json():
         json.dump(panels_data, f, indent=4)
 
     print("Data saved successfully!")
-
-def StartMYFILD():
-    save_accounts_to_json()
-
-if __name__ == '__main__':
-    save_accounts_to_json()
